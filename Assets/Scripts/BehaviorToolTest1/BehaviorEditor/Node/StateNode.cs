@@ -1,16 +1,22 @@
-﻿using Behavior;
+﻿using BehaviorToolTest1.Behavior;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
-using Debug = System.Diagnostics.Debug;
 
-namespace BehaviorEditor.Node
+namespace BehaviorToolTest1.BehaviorEditor.Node
 {
     public class StateNode : BaseNode
     {
         [AssetList]
         private bool collapse;
         public State currentstate;
+        public GUIContent iconCollapse;
+        public GUIContent iconUnCollapse;
+        public void OnEnable()
+        {
+            iconCollapse = EditorGUIUtility.IconContent("winbtn_win_max_h");
+            iconUnCollapse = EditorGUIUtility.IconContent("winbtn_win_restore_h");
+        }
 
         public override void DrawWindow()
         {
@@ -19,8 +25,7 @@ namespace BehaviorEditor.Node
                 if (collapse)
                 {
                     windowRect.height = 100;
-                    var iconContent = EditorGUIUtility.IconContent("winbtn_win_max_h");
-                    if (GUILayout.Button(iconContent.image))
+                    if (GUILayout.Button(iconCollapse.image))
                     {
                         collapse = !collapse;
                     }
@@ -28,8 +33,7 @@ namespace BehaviorEditor.Node
                 else
                 {
                     windowRect.height = 300;
-                    var iconContent = EditorGUIUtility.IconContent("winbtn_win_restore_h");
-                    if (GUILayout.Button(iconContent.image))
+                    if (GUILayout.Button(iconUnCollapse.image))
                     {
                         collapse = !collapse;
                     }

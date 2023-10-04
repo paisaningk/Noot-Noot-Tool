@@ -1,4 +1,4 @@
-﻿namespace BehaviorEditor
+﻿namespace BehaviorToolTest1.BehaviorEditor
 {
     public enum UserAction
     {

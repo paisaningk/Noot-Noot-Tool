@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BehaviorEditor.Node
+namespace BehaviorToolTest1.BehaviorEditor.Node
 {
     public class CommentNode : BaseNode
     {

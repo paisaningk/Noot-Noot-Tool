@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using BehaviorEditor.Node;
+﻿using System.Collections.Generic;
+using BehaviorToolTest1.BehaviorEditor.Node;
 using UnityEditor;
 using UnityEngine;
-using Object = System.Object;
-using Vector3 = System.Numerics.Vector3;
 
-namespace BehaviorEditor
+namespace BehaviorToolTest1.BehaviorEditor
 {
     public class BehaviorEditor : EditorWindow
     {
