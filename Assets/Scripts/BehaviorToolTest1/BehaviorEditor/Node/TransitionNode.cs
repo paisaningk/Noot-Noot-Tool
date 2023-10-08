@@ -1,5 +1,6 @@
 ﻿using BehaviorToolTest1.Behavior.Conditions;
 using UnityEditor;
+using UnityEngine;
 
 namespace BehaviorToolTest1.BehaviorEditor.Node
 {
@@ -32,6 +33,7 @@ namespace BehaviorToolTest1.BehaviorEditor.Node
             }
             else
             {
+                //Todo : แก้เป็นปุ่ม
                 targetTransition.disable = EditorGUILayout.Toggle("Disable", targetTransition.disable);
             }
 
@@ -39,7 +41,15 @@ namespace BehaviorToolTest1.BehaviorEditor.Node
 
         public override void DrawCurve()
         {
-            base.DrawCurve();
+            if (enterState)
+            {
+                var rect = windowRect;
+                rect.y += windowRect.height * 0.5f;
+                rect.width = 1;
+                rect.height = 1;
+                
+                BehaviorEditor.DrawNodeCurve(enterState.windowRect, rect, true, (targetTransition.disable) ? Color.red : Color.green);
+            }
         }
     }
 }

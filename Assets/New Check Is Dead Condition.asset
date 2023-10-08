@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b7332e0f984d4f836ae99fea2ae2a5, type: 3}
-  m_Name: New State
+  m_Script: {fileID: 11500000, guid: 047710cb0da14325b67164750a764cca, type: 3}
+  m_Name: New Check Is Dead Condition
   m_EditorClassIdentifier: 

@@ -1,4 +1,5 @@
-﻿using BehaviorToolTest1.Behavior;
+﻿using System.Collections.Generic;
+using BehaviorToolTest1.Behavior;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -7,9 +8,12 @@ namespace BehaviorToolTest1.BehaviorEditor.Node
 {
     public class StateNode : BaseNode
     {
-        [AssetList]
         private bool collapse;
-        public State currentstate;
+        public State currentState;
+        public State previousState;
+        public List<BaseNode> referencesNodesList = new();
+
+        // Icon
         public GUIContent iconCollapse;
         public GUIContent iconUnCollapse;
         public void OnEnable()
@@ -20,7 +24,7 @@ namespace BehaviorToolTest1.BehaviorEditor.Node
 
         public override void DrawWindow()
         {
-            if (currentstate)
+            if (currentState)
             {
                 if (collapse)
                 {
@@ -45,12 +49,34 @@ namespace BehaviorToolTest1.BehaviorEditor.Node
                 EditorGUILayout.LabelField("Add State to Modify");
             }
 
-            currentstate = (State) EditorGUILayout.ObjectField(currentstate, typeof(State), false);
+            currentState = (State) EditorGUILayout.ObjectField(currentState, typeof(State), false);
+
+            if (previousState != currentState)
+            {
+                previousState = currentState;
+                ClearReferences();
+
+                for (var i = 0; i < currentState.transitionList.Count; i++)
+                {
+                    referencesNodesList.Add(BehaviorEditor.AddTransitionNode(i, currentState.transitionList[i], this));
+                }
+            }
         }
 
         public override void DrawCurve()
         {
-            base.DrawCurve();
+            
+        }
+
+        public Transition AddTransition()
+        {
+            return currentState.AddTransition();
+        }
+
+        public void ClearReferences()
+        {
+            BehaviorEditor.ClearWindowsFromList(referencesNodesList);
+            referencesNodesList.Clear();
         }
     }
 }

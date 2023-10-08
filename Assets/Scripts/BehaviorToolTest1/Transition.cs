@@ -3,6 +3,7 @@ using BehaviorToolTest1.Behavior.Conditions;
 
 namespace BehaviorToolTest1
 {
+    [System.Serializable]
     public class Transition
     {
         public Condition condition;
